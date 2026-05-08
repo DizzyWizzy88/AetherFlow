@@ -24,9 +24,9 @@ Expected Result:
 Password should be rejected for being under 8 characters.
 
 Actual Result:
-No validation response displayed.
+No validation response displayed and button does not respond
 
 Status:
 Fail
 
-
+Button does not respond to any entries
