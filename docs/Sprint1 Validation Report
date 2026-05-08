@@ -10,7 +10,7 @@ Expected Result:
 The system should reject the login attempt and display an error message.
 
 Actual Result:
-Nothing happens when the button is clicked.
+Nothing happens when the button is clicked. No response
 
 Status:
 Fail
@@ -27,7 +27,7 @@ Expected Result:
 Password should be rejected for being under 8 characters.
 
 Actual Result:
-No validation response displayed and button does not respond
+No validation response displayed and button does not respond.
 
 Status:
 Fail
@@ -40,7 +40,7 @@ Expected Result:
 System should reject login and require password field
 
 Actual Result:
-No validation or error message displayed.
+No validation or error message displayed. No button response
 
 Status: Fail
 
