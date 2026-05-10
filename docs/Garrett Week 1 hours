@@ -1,9 +1,9 @@
 | Task ID | Story ID | Description                               | Day 1 | Day 2 | Day 3 | Day 4 | Day 5 |
 | ------- | -------- | ----------------------------------------- | ----- | ----- | ----- | ----- | ----- |
-| T-106   | AF-101   | Draft Security Test Plan for login system | 1     | 1     | 1     | 0     | 0     |
-| T-108   | AF-101   | Test invalid login handling               | 1     | 0     | 1     | 1     | 0     |
-| T-109   | AF-101   | Verify password validation requirements   | 1     | 1     | 0     | 0     | 0     |
-| T-110   | AF-102   | Review ISBN/SKU validation requirements   | 1     | 1     | 1     | 0     | 0     |
+| T-106   | AF-101   | Draft Security Test Plan for login system | 0     | 1     | 1     | 0     | 1     |
+| T-108   | AF-101   | Test invalid login handling               | 0     | 0     | 1     | 1     | 1     |
+| T-109   | AF-101   | Verify password validation requirements   | 0     | 1     | 0     | 1     | 0     |
+| T-110   | AF-102   | Review ISBN/SKU validation requirements   | 0     | 1     | 1     | 0     | 1     |
 | T-111   | AF-102   | Test duplicate SKU rejection handling     | 0     | 1     | 1     | 0     | 0     |
 | T-112   | AF-101   | Verify role-based access permissions      | 0     | 1     | 0     | 1     | 0     |
 | T-113   | AF-101   | Document bugs and validation results      | 0     | 0     | 1     | 1     | 1     |
