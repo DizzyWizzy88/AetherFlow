@@ -1,0 +1,63 @@
+# Sprint 1 Validation Report
+# Team Member: Garrett Lassalle
+
+## Login Validation Testing
+
+                             Test Case 1:
+
+Click Authenticate Access with empty username and password fields.
+
+Expected Result:
+The system should reject the login attempt and display an error message.
+
+Actual Result:
+Nothing happens when the button is clicked. No response
+
+Status:
+Fail
+
+Recommendation:
+Add validation messages for empty fields and prevent login submission until required fields are completed.
+
+
+                              Test Case 2:
+
+Entered short password "123".
+
+Expected Result:
+Password should be rejected for being under 8 characters.
+
+Actual Result:
+No validation response displayed and button does not respond.
+
+Status:
+Fail
+
+                              Test Case 3:
+
+Enter Username only and leave password blank.
+
+Expected Result:
+System should reject login and require password field
+
+Actual Result:
+No validation or error message displayed. No button response
+
+Status: Fail
+
+
+                             Test Case 4:
+
+Enter special characters
+
+Expected Result:
+System should reject invalid characters
+
+Actual Result:
+No validation or security response displyed
+
+Status:
+Fail
+
+Button has no response to any input
+
