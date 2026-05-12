@@ -1,0 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* You can add your "Aether Blue" variables here later! */
+:root {
+  --aether-blue: #007bff;
+}
