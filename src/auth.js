@@ -2,8 +2,9 @@ import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
 // grabbing these from the .env file so we dont hardcode secrets
-const JWT_SECRET = process.env.JWT_SECRET
-const REFRESH_SECRET = process.env.JWT_REFRESH_SECRET
+// Updated for Vite/Vercel compatibility
+const JWT_SECRET = import.meta.env.VITE_JWT_SECRET
+const REFRESH_SECRET = import.meta.env.VITE_JWT_REFRESH_SECRET
 
 // not sure if 12 rounds is overkill but professor said higher is more secure
 const SALT_ROUNDS = 12

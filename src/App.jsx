@@ -1,7 +1,13 @@
+import React from 'react';
 import Login from './components/Login'
+import './index.css';
 
 function App() {
-  return <Login />
+  return (
+    <div className="min-h-screen bg-blue-600 flex items-center justify-center">
+      <Login />
+    </div>
+  );
 }
 
 export default App
