@@ -2,10 +2,17 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}", // This tells Tailwind to look in your src folder
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'aether-blue': '#007BFF', // Official Project Blue
+      },
+      borderRadius: {
+        'aether': '8px', // Official 8px Radius
+      }
+    },
   },
   plugins: [],
 }
