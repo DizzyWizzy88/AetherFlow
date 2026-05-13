@@ -2,15 +2,10 @@
 export default {
   content: [
     "./index.html",
-    "./src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx}", // This tells Tailwind to look in your src folder
   ],
   theme: {
-    extend: {
-      colors: {
-        // Defining your project identity for Week 2
-        'aether-blue': '#1e40af', 
-      },
-    },
+    extend: {},
   },
   plugins: [],
 }
