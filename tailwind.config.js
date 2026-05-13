@@ -1,15 +1,15 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
       colors: {
-        'aether-blue': '#0D47A1',   
-        'cloud-gray': '#F5F5F5',    
+        // Defining your project identity for Week 2
+        'aether-blue': '#1e40af', 
       },
-      borderRadius: {
-        'aether': '8px', 
-      }
     },
   },
   plugins: [],
