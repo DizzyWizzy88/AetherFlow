@@ -1,13 +1,13 @@
-import Login from './components/Login'
-import './index.css';
+import React from 'react'
 
 function App() {
   return (
-    // 'min-h-screen' makes sure the blue covers the whole page
-    // 'bg-blue-600' or 'bg-blue-900' for that deep blue look
-    <div className="min-h-screen bg-blue-600 flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold text-white mb-4">AetherFlow</h1>
-      {/* Your Login Form Component */}
+    <div className="min-h-screen bg-[#007BFF] flex items-center justify-center">
+      <h1 className="text-white text-4xl font-bold">AetherFlow</h1>
+      {/* Your login components go here */}
     </div>
-  );
+  )
 }
+
+// THIS IS THE LINE ROLLUP IS LOOKING FOR:
+export default App
