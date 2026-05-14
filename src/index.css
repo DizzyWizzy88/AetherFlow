@@ -2,7 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
-/* You can add your "Aether Blue" variables here later! */
+/* Resetting the browser defaults so AetherFlow can take the full screen */
+html, body, #root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Prevents unwanted horizontal scrolling */
+}
+
 :root {
   --aether-blue: #007bff;
 }
