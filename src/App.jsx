@@ -3,7 +3,7 @@ import Login from './components/Login';
 
 function App() {
   return (
-    <main className="w-full h-full">
+    <main className="h-full w-full">
       <Login /> 
     </main>
   );
