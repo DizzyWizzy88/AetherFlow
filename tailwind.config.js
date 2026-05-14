@@ -7,10 +7,10 @@ export default {
   theme: {
     extend: {
       colors: {
-        'aether-blue': '#007BFF', // Official Project Blue
+        'aether-blue': '#007BFF',
       },
       borderRadius: {
-        'aether': '8px', // Official 8px Radius
+        'aether': '8px',
       }
     },
   },

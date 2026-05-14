@@ -1,11 +1,11 @@
-import React from 'react';
 import Login from './components/Login'; 
 
 function App() {
   return (
-    <main className="h-full w-full">
+    /* h-full ensures the App wrapper passes the 100vh height down to Login */
+    <div className="h-full w-full">
       <Login /> 
-    </main>
+    </div>
   );
 }
 

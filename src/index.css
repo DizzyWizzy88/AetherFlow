@@ -2,15 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Force the entire application to occupy the full height of the viewport */
 html, body, #root {
-  margin: 0 !important;
-  padding: 0 !important;
-  height: 100vh !important; /* Force full screen height */
-  width: 100vw !important;  /* Force full screen width */
-  overflow: hidden !important;
-  display: block !important;
-}
-
-:root {
-  --aether-blue: #007bff;
+  height: 100vh;
+  width: 100vw;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; /* Prevents tiny scrollbars that can ruin the center */
 }
