@@ -14,7 +14,7 @@ const Login = () => {
   }
 
   return (
-    <div className="min-h-screen w-full bg-gradient-to-br from-blue-700 via-[#007BFF] to-blue-900 flex items-center justify-center p-6">
+    <div className="min-h-screen w-full flex items-center justify-center bg-gradient-to-br from-blue-700 via-[#007BFF] to-blue-900 p-6">  
       
       {/* High-Fidelity Container */}
       <div className="bg-white/95 backdrop-blur-md p-10 rounded-aether shadow-[0_20px_50px_rgba(0,0,0,0.3)] w-full max-w-md border-t-8 border-aether-blue transform transition-all duration-500 hover:scale-[1.01]">
