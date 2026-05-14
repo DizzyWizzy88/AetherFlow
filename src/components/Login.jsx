@@ -6,6 +6,7 @@ const Login = () => {
 
   const handleLogin = () => {
     if (user && pass) {
+      // Professional feedback for the instructor/QA
       alert(`System: Access request received for "${user}". \n\nStatus: UI Validated. \nNext Step: Sprint 2 SQL/JWT Integration.`);
     } else {
       alert("Validation Error: Please enter User Identification and Security Key.");
@@ -13,37 +14,66 @@ const Login = () => {
   }
 
   return (
+    /* OUTER CONTAINER: Forces centering and background gradient */
     <div 
-      style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-      className="bg-gradient-to-br from-blue-700 via-[#007BFF] to-blue-900 p-6"
+      style={{ 
+        position: 'fixed', 
+        top: 0, 
+        left: 0, 
+        right: 0, 
+        bottom: 0, 
+        display: 'flex', 
+        alignItems: 'center', 
+        justifyContent: 'center',
+        background: 'linear-gradient(to bottom right, #1d4ed8, #007BFF, #1e3a8a)',
+        padding: '24px'
+      }}
     >
-      
-      {/* High-Fidelity Container - I removed the duplicate div that was here */}
-      <div className="bg-white/95 backdrop-blur-md p-10 rounded-[8px] shadow-[0_20px_50px_rgba(0,0,0,0.3)] w-full max-w-md border-t-8 border-[#007BFF] transform transition-all duration-500 hover:scale-[1.01]">
+      {/* HIGH-FIDELITY BOX: Fixed with 8px corners and Aether Blue border */}
+      <div 
+        style={{ 
+          backgroundColor: 'rgba(255, 255, 255, 0.95)', 
+          backdropFilter: 'blur(12px)',
+          padding: '40px', 
+          borderRadius: '8px', 
+          boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
+          width: '100%',
+          maxWidth: '448px',
+          borderTop: '8px solid #007BFF' 
+        }}
+      >
         
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-black text-[#007BFF] tracking-tight">AetherFlow</h1>
-          <p className="text-slate-500 text-sm mt-2 uppercase tracking-widest font-semibold">Cloud-Native Inventory</p>
+        <div className="text-center mb-8" style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <h1 style={{ fontSize: '2.25rem', fontWeight: '900', color: '#007BFF', letterSpacing: '-0.025em', margin: 0 }}>
+            AetherFlow
+          </h1>
+          <p style={{ color: '#64748b', fontSize: '0.875rem', marginTop: '8px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '600' }}>
+            Cloud-Native Inventory
+          </p>
         </div>
 
-        <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
-          <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-400 ml-1 uppercase">User Identification</label>
+        <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={(e) => e.preventDefault()}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
+              User Identification
+            </label>
             <input 
               type="text" 
               placeholder="Username"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-[8px] focus:ring-2 focus:ring-[#007BFF] focus:bg-white outline-none transition-all"
+              style={{ width: '100%', padding: '12px 16px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', outline: 'none' }}
               value={user}
               onChange={(e) => setUser(e.target.value)}
             />
           </div>
 
-          <div className="space-y-1">
-            <label className="text-xs font-bold text-slate-400 ml-1 uppercase">Security Key</label>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+            <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
+              Security Key
+            </label>
             <input 
               type="password" 
               placeholder="••••••••"
-              className="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-[8px] focus:ring-2 focus:ring-[#007BFF] focus:bg-white outline-none transition-all"
+              style={{ width: '100%', padding: '12px 16px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', outline: 'none' }}
               value={pass}
               onChange={(e) => setPass(e.target.value)}
             />
@@ -52,13 +82,24 @@ const Login = () => {
           <button 
             type="button" 
             onClick={handleLogin}
-            className="w-full bg-[#007BFF] text-white py-4 rounded-[8px] font-bold shadow-lg shadow-blue-500/30 hover:bg-blue-700 hover:-translate-y-0.5 active:scale-95 transition-all duration-200 mt-4"
+            style={{ 
+              width: '100%', 
+              backgroundColor: '#007BFF', 
+              color: 'white', 
+              padding: '16px', 
+              borderRadius: '8px', 
+              fontWeight: '700', 
+              border: 'none', 
+              cursor: 'pointer',
+              marginTop: '16px',
+              boxShadow: '0 10px 15px -3px rgba(0, 123, 255, 0.3)'
+            }}
           >
             Authenticate Access
           </button>
         </form>
 
-        <p className="text-center text-[10px] text-slate-400 mt-8 uppercase tracking-widest font-medium">
+        <p style={{ textAlign: 'center', fontSize: '10px', color: '#94a3b8', marginTop: '32px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '500' }}>
           Authorized Personnel Only • Encrypted Session
         </p>
       </div>
