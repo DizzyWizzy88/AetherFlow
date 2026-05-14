@@ -21,8 +21,9 @@ const Login = () => {
         
         <div className="text-center mb-8">
           <h1 className="text-4xl font-black text-aether-blue tracking-tight">AetherFlow</h1>
-          <p className="text-slate-500 text-sm mt-2 uppercase tracking-widest font-semibold">RISE Ecosystem</p>
-        </div>
+          {/* Changed from RISE Ecosystem to match our project name */}
+          <p className="text-slate-500 text-sm mt-2 uppercase tracking-widest font-semibold">Cloud-Native Inventory</p>
+      </div>
 
         <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
           <div className="space-y-1">
