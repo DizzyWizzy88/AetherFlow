@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import logoImg from "../../assets/AetherFlow_Logo.png";
 
 const Login = () => {
   const [user, setUser] = useState('')
@@ -6,7 +7,6 @@ const Login = () => {
 
   const handleLogin = () => {
     if (user && pass) {
-      // Professional feedback for the instructor/QA
       alert(`System: Access request received for "${user}". \n\nStatus: UI Validated. \nNext Step: Sprint 2 SQL/JWT Integration.`);
     } else {
       alert("Validation Error: Please enter User Identification and Security Key.");
@@ -14,7 +14,6 @@ const Login = () => {
   }
 
   return (
-    /* OUTER CONTAINER: Forces centering and background gradient */
     <div 
       style={{ 
         position: 'fixed', 
@@ -29,7 +28,6 @@ const Login = () => {
         padding: '24px'
       }}
     >
-      {/* HIGH-FIDELITY BOX: Fixed with 8px corners and Aether Blue border */}
       <div 
         style={{ 
           backgroundColor: 'rgba(255, 255, 255, 0.95)', 
@@ -39,17 +37,23 @@ const Login = () => {
           boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
           width: '100%',
           maxWidth: '448px',
-          borderTop: '8px solid #007BFF' 
+          borderTop: '8px solid #007BFF'
         }}
       >
-        
-        <div className="text-center mb-8" style={{ textAlign: 'center', marginBottom: '32px' }}>
-          <h1 style={{ fontSize: '2.25rem', fontWeight: '900', color: '#007BFF', letterSpacing: '-0.025em', margin: 0 }}>
-            AetherFlow
-          </h1>
-          <p style={{ color: '#64748b', fontSize: '0.875rem', marginTop: '8px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '600' }}>
-            Cloud-Native Inventory
-          </p>
+        {/* LOGO SECTION: Only the image, centered */}
+        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+          <img 
+            src="../assets/AetherFlow_Logo.png" // Use src and a relative path
+            alt="AetherFlow Branding" 
+            style={{ 
+              width: '100%',      
+              maxWidth: '280px',  
+              height: 'auto', 
+              borderRadius: '4px', 
+              border: '1px solid #007BFF', // Aether Blue Requirement
+              backgroundColor: '#000'      
+            }} 
+          />
         </div>
 
         <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={(e) => e.preventDefault()}>
