@@ -1,18 +1,31 @@
 import { useState } from 'react'
-import logoImg from "../../assets/AetherFlow_Logo.png";
-
+ 
 const Login = () => {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
-
-  const handleLogin = () => {
-    if (user && pass) {
-      alert(`System: Access request received for "${user}". \n\nStatus: UI Validated. \nNext Step: Sprint 2 SQL/JWT Integration.`);
-    } else {
+ 
+  const handleLogin = async () => {
+    if (!user || !pass) {
       alert("Validation Error: Please enter User Identification and Security Key.");
+      return;
+    }
+    try {
+      const res = await fetch('http://localhost:3001/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: user, password: pass })
+      });
+      const data = await res.json();
+      if (data.success) {
+        alert(`Access Granted. Welcome, ${data.user.username}!`);
+      } else {
+        alert(`Access Denied: ${data.message}`);
+      }
+    } catch (err) {
+      alert('Could not connect to server.');
     }
   }
-
+ 
   return (
     <div 
       style={{ 
@@ -40,22 +53,21 @@ const Login = () => {
           borderTop: '8px solid #007BFF'
         }}
       >
-        {/* LOGO SECTION: Only the image, centered */}
         <div style={{ textAlign: 'center', marginBottom: '32px' }}>
           <img 
-            src="../assets/AetherFlow_Logo.png" // Use src and a relative path
+            src="../assets/AetherFlow_Logo.png"
             alt="AetherFlow Branding" 
             style={{ 
               width: '100%',      
               maxWidth: '280px',  
               height: 'auto', 
               borderRadius: '4px', 
-              border: '1px solid #007BFF', // Aether Blue Requirement
+              border: '1px solid #007BFF',
               backgroundColor: '#000'      
             }} 
           />
         </div>
-
+ 
         <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={(e) => e.preventDefault()}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
@@ -69,7 +81,7 @@ const Login = () => {
               onChange={(e) => setUser(e.target.value)}
             />
           </div>
-
+ 
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
               Security Key
@@ -82,7 +94,7 @@ const Login = () => {
               onChange={(e) => setPass(e.target.value)}
             />
           </div>
-
+ 
           <button 
             type="button" 
             onClick={handleLogin}
@@ -102,7 +114,7 @@ const Login = () => {
             Authenticate Access
           </button>
         </form>
-
+ 
         <p style={{ textAlign: 'center', fontSize: '10px', color: '#94a3b8', marginTop: '32px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '500' }}>
           Authorized Personnel Only • Encrypted Session
         </p>
@@ -110,5 +122,5 @@ const Login = () => {
     </div>
   )
 }
-
+ 
 export default Login
