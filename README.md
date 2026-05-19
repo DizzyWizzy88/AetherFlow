@@ -1,56 +1,63 @@
-# AetherFlow: Cloud-Native Inventory Management
+# AetherFlow: Cloud-Native Inventory Management Ecosystem
 
-## Project Vision
-AetherFlow is a high-performance digital ecosystem designed to optimize the movement and tracking of goods for small-to-medium enterprises. By eliminating data silos, it provides real-time supply chain visibility and automated stock alerts.
+AetherFlow is a high-performance digital ecosystem designed to optimize the movement, tracking, and auditing of goods for small-to-medium enterprises. By transitioning away from fragmented manual workflows, AetherFlow provides a centralized control hub where supply chain visibility, secure role-based access, automated stock alerts, and real-time inventory diagnostics converge.
 
-## The Team & Roles
-* **Daniel Rhoads**: UI/UX Specialist & Lead
-* **Nathan Nied**: Logic Architect (Backend & Database)
-* **Garrett Lassalle**: Detail-Oriented Tester (QA & Validation)
-* **Jesus Salas**: Business Analyst (Documentation Lead)
-* **Alex Johnston**: Scrum Master (Project Coordinator)
+---
 
-## Repository Structure
-* **/src**: Core application logic and interface components.
-    * `main.jsx`: Entry point for the Vite build and React mounting.
-    * `App.jsx`: Main layout wrapper and component router.
-    * `index.css`: Global styles and Tailwind CSS directives.
-    * **/components**:
-        * `Login.jsx`: Authentication UI with state hooks and Aether design tokens.
-* **/assets**: Visual documentation of system design:
-    * High-Level System Architecture Diagram
-    * Information Architecture (IA) Map
-    * Project Sitemap & Use Case Diagrams
-* **/docs**: Project management and compliance files:
-    * `AetherFlow - CS492.xlsx`: Sprint 1 & 2 Planning and Product Backlog.
-    * `AetherFlow_Group_Doc.docx`: Full project specification and Sprint 1 Retrospective.
-    * `AetherFlow_ISBN.docx`: SKU/ISBN validation logic and business rules.
+## 👥 Team Roles & Project Responsibilities
 
-## Tech Stack
-* **Build Tool**: Vite (Rollup production bundling)
-* **Frontend**: React 18+ (Functional Components & Hooks)
-* **Styling**: Tailwind CSS (Custom Aether Design System)
-* **Deployment**: Vercel (CI/CD with Cloud-Native environment handling)
-* **Authentication**: JWT (JSON Web Tokens) & Bcrypt password hashing
-* **Design System**: Aether Blue (#007BFF), 8px Rounded Corners
+The development of AetherFlow is driven by a structured, Agile-inspired framework with clearly defined operational roles:
 
-## Sprint 1 Status
-- [x] Repository Initialized & Standardized
-- [x] Login UI with State Hooks Completed
-- [x] System Architecture & IA Defined
-- [x] QA Security Test Plan Drafted
+* **Daniel Rhoads** | *UI/UX Specialist & Lead*
+    * **Focus:** Visual architecture, design token enforcement, frontend interface engineering, and mobile cross-platform layout wrappers.
+* **Nathan Nied** | *Logic Architect (Backend & Database)*
+    * **Focus:** Relational SQL database schema formulation, secure API development, server-side data pools, and token-based session processing.
+* **Garrett Lassalle** | *Detail-Oriented Tester (QA & Validation)*
+    * **Focus:** Core functionality assurance, automated execution script testing, test runner WAF optimizations, and viewport layout verification.
+* **Jesus Salas** | *Business Analyst (Documentation Lead)*
+    * **Focus:** Product backlog management, user story profiling, requirement matrix analysis, and validation compliance reports.
+* **Alex Johnston** | *Scrum Master (Project Coordinator)*
+    * **Focus:** Sprint velocity tracking, block mitigation, timeline coordination, and deployment workspace infrastructure.
 
-## Sprint 1 Status (Week 2 Updates)
-- [x] Repository Initialized & Standardized
-- [x] Login UI with State Hooks Completed
-- [x] Resolved Rollup Build & Circular Dependency Errors
-- [x] Production Deployment Live on Vercel
-- [x] Aether Blue Design System & 8px Radius Integrated
-- [ ] Final Sprint 1 Documentation & Zipping (Target: Sunday night/Monday morning)
+---
 
+## 💻 Technical Architecture & Stack
 
-## Sprint 1 Status
-- [x] Repository Initialized & Standardized
-- [x] Login UI with State Hooks Completed
-- [x] System Architecture & IA Defined
-- [x] QA Security Test Plan Drafted
+To ensure optimal speed, horizontal scalability, and multi-platform deployment capabilities, AetherFlow utilizes the following stack:
+
+* **Frontend Environment:** React.js initialized via the Node.js/Vite build system.
+* **Design & Styling:** Tailwind CSS engine enforcing strict design tokens:
+    * *Primary Action Elements:* `Aether Blue (#007BFF)`
+    * *System Warning Indicators:* `Crimson Alert (#D50000)`
+    * *Container Framing:* Strict `8px` rounded-corner (`rounded-lg`) layout rules.
+* **Cross-Platform Scaffolding:** Native runtime layer using `@capacitor/core` and `@capacitor/cli` for mobile device scalability.
+* **Backend Server Logic:** Node.js running an asynchronous Express API router framework.
+* **Data Persistence Layer:** Relational SQL database engine managing strict data constraints.
+
+---
+
+## 📊 Current Project Status
+
+### Done (Sprint 1 Milestones)
+* [x] **Secure Access Gateway:** Developed the responsive frontend login interface matching core branding guidelines.
+* [x] **Credential Input Masking:** Implemented real-time character obscuring for secure access key inputs.
+* [x] **Environment Standardization:** Resolved local asset resolution breaks by enforcing relative path structures.
+* [x] **Mobile Runtime Initialization:** Integrated and initialized cross-platform Capacitor dependencies locally.
+
+### In Progress (Sprint 2 Focus)
+* [ ] **Primary Workspace Development:** Coding high-fidelity dashboard views and inventory management grid structures.
+* [ ] **Relational Schema Integration:** Deploying live SQL table instances and setting up secure backend database connections.
+* [ ] **Authentication Handoff:** Connecting frontend form validation handlers to active backend API verification endpoints.
+* [ ] **Automated Integration Testing:** Writing automated script testing parameters to evaluate registration limits and input validation safety.
+
+---
+
+## 🛠️ Local Development & Installation Setup
+
+Follow these precise steps to spin up the local development environment inside your terminal workspace. If you are operating within a Linux or Windows Subsystem for Linux (WSL) environment, make sure you are in the correct directory.
+
+### 1. Clone & Navigate
+Clone the centralized team repository and move straight into the project root directory folder:
+```bash
+git clone <repository-url>
+cd AetherFlow-1
