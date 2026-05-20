@@ -55,7 +55,7 @@ export default function Dashboard() {
             </div>
             {/* Hardcoded Aether Blue (#007BFF) Token Override */}
             <button 
-              className="text-white font-semibold px-5 py-2 rounded-lg transition-all duration-200 bg-[#007BFF] hover:bg-blue-700 active:scale-95 shadow-sm text-sm"
+              className="text-white font-semibold px-5 py-2 rounded-lg bg-aetherBlue"
             >
               Execute Filter
             </button>
@@ -92,7 +92,7 @@ export default function Dashboard() {
                     <TableCell>
                       {/* AF-105: Low-Stock Visual Warning System triggers if qty <= 10. Hardcoded Crimson Alert (#D50000) Override */}
                       {item.qty <= 10 ? (
-                        <Badge className="bg-[#D50000] hover:bg-red-800 text-white font-bold px-2.5 py-0.5 rounded shadow-sm animate-pulse border-none">
+                        <Badge className="bg-crimsonAlert text-white font-bold px-2.5 py-0.5 rounded animate-pulse">
                           CRITICAL LOW ({item.qty})
                         </Badge>
                       ) : (
