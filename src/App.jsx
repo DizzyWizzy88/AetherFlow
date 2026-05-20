@@ -1,11 +1,10 @@
-import Login from './components/Login'; 
+import Dashboard from './components/Dashboard';
+//import Login from './components/Login'; 
+import React from 'react';
 
 function App() {
   return (
-    /* h-full ensures the App wrapper passes the 100vh height down to Login */
-    <div className="h-full w-full">
-      <Login /> 
-    </div>
+    <Dashboard />
   );
 }
 
