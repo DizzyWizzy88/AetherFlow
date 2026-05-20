@@ -3,29 +3,39 @@ import { useState } from 'react'
 const Login = () => {
   const [user, setUser] = useState('')
   const [pass, setPass] = useState('')
- 
-  const handleLogin = async () => {
-    if (!user || !pass) {
-      alert("Validation Error: Please enter User Identification and Security Key.");
-      return;
-    }
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
     try {
-      const res = await fetch('http://localhost:3001/api/auth/login', {
+      // Hitting Nathan's local API server port (e.g., 5000 or 8080)
+      const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: user, password: pass })
+        headers: {
+        'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: user, // state string from form input
+          password: pass  // state string from form input
+        }),
       });
-      const data = await res.json();
-      if (data.success) {
-        alert(`Access Granted. Welcome, ${data.user.username}!`);
+
+      const data = await response.json();
+
+      if (response.ok) {
+        // Securely store the signed session token returned by his logic engine
+        localStorage.setItem('authToken', data.token);
+
+        // Route the user straight into your newly built inventory workspace
+        window.location.href = '/dashboard';
       } else {
-        alert(`Access Denied: ${data.message}`);
+        alert(data.message || 'Authentication Failed');
       }
-    } catch (err) {
-      alert('Could not connect to server.');
+    } catch (error) {
+      console.error('API Connection Error:', error);
     }
-  }
- 
+  };
+
   return (
     <div 
       style={{ 
