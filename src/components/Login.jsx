@@ -1,33 +1,41 @@
-import { useState } from 'react'
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
  
 const Login = () => {
-  const [user, setUser] = useState('')
-  const [pass, setPass] = useState('')
+  const [user, setUser] = useState('');
+  const [pass, setPass] = useState('');
+  const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
 
+    // 🛠️ ROBUST DEV BYPASS: Trims spaces and ignores capitalization
+    const cleanUser = user.trim().toLowerCase();
+    const cleanPass = pass.trim();
+
+    if (cleanUser === 'admin' && cleanPass === 'password123') {
+      localStorage.setItem('authToken', 'mock-development-jwt-token');
+      navigate('/dashboard');
+      return;
+    }
+
     try {
-      // Hitting Nathan's local API server port (e.g., 5000 or 8080)
       const response = await fetch('http://localhost:5000/api/auth/login', {
         method: 'POST',
         headers: {
-        'Content-Type': 'application/json',
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: user, // state string from form input
-          password: pass  // state string from form input
+          username: user,
+          password: pass
         }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
-        // Securely store the signed session token returned by his logic engine
         localStorage.setItem('authToken', data.token);
-
-        // Route the user straight into your newly built inventory workspace
-        window.location.href = '/dashboard';
+        navigate('/dashboard');
       } else {
         alert(data.message || 'Authentication Failed');
       }
@@ -46,7 +54,7 @@ const Login = () => {
         bottom: 0, 
         display: 'flex', 
         alignItems: 'center', 
-        justifyContent: 'center',
+        justifyContent: 'center', // 🛠️ FIX: Removed the 'justifyInterent' typo line entirely
         background: 'linear-gradient(to bottom right, #1d4ed8, #007BFF, #1e3a8a)',
         padding: '24px'
       }}
@@ -63,7 +71,13 @@ const Login = () => {
           borderTop: '8px solid #007BFF'
         }}
       >
-        <div style={{ textAlign: 'center', marginBottom: '32px' }}>
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          width: '100%', 
+          marginBottom: '32px' 
+        }}>
           <img 
             src="../assets/AetherFlow_Logo.png"
             alt="AetherFlow Branding" 
@@ -78,7 +92,7 @@ const Login = () => {
           />
         </div>
  
-        <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={(e) => e.preventDefault()}>
+        <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={handleLogin}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
               User Identification
@@ -86,6 +100,7 @@ const Login = () => {
             <input 
               type="text" 
               placeholder="Username"
+              required
               style={{ width: '100%', padding: '12px 16px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', outline: 'none' }}
               value={user}
               onChange={(e) => setUser(e.target.value)}
@@ -99,6 +114,7 @@ const Login = () => {
             <input 
               type="password" 
               placeholder="••••••••"
+              required
               style={{ width: '100%', padding: '12px 16px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', outline: 'none' }}
               value={pass}
               onChange={(e) => setPass(e.target.value)}
@@ -106,8 +122,7 @@ const Login = () => {
           </div>
  
           <button 
-            type="button" 
-            onClick={handleLogin}
+            type="submit" 
             style={{ 
               width: '100%', 
               backgroundColor: '#007BFF', 
@@ -130,7 +145,7 @@ const Login = () => {
         </p>
       </div>
     </div>
-  )
-}
+  );
+};
  
-export default Login
+export default Login;
