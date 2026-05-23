@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import logo from '../../assets/AetherFlow_Logo.png';
  
 const Login = () => {
   const [user, setUser] = useState('');
