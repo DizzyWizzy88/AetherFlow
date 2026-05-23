@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import logo from '../../assets/AetherFlow_Logo.png';
- 
+
 const Login = () => {
   const [user, setUser] = useState('');
   const [pass, setPass] = useState('');
@@ -55,7 +54,7 @@ const Login = () => {
         bottom: 0, 
         display: 'flex', 
         alignItems: 'center', 
-        justifyContent: 'center', // 🛠️ FIX: Removed the 'justifyInterent' typo line entirely
+        justifyContent: 'center', 
         background: 'linear-gradient(to bottom right, #1d4ed8, #007BFF, #1e3a8a)',
         padding: '24px'
       }}
@@ -79,8 +78,9 @@ const Login = () => {
           width: '100%', 
           marginBottom: '32px' 
         }}>
+          {/* 🛠️ FIXED: Pointing directly to the root public asset directory path */}
           <img 
-            src="../assets/AetherFlow_Logo.png"
+            src="/AetherFlow_Logo.png"
             alt="AetherFlow Branding" 
             style={{ 
               width: '100%',      
@@ -92,7 +92,7 @@ const Login = () => {
             }} 
           />
         </div>
- 
+
         <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={handleLogin}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
@@ -107,7 +107,7 @@ const Login = () => {
               onChange={(e) => setUser(e.target.value)}
             />
           </div>
- 
+
           <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
             <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
               Security Key
@@ -121,7 +121,7 @@ const Login = () => {
               onChange={(e) => setPass(e.target.value)}
             />
           </div>
- 
+
           <button 
             type="submit" 
             style={{ 
@@ -140,7 +140,7 @@ const Login = () => {
             Authenticate Access
           </button>
         </form>
- 
+
         <p style={{ textAlign: 'center', fontSize: '10px', color: '#94a3b8', marginTop: '32px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '500' }}>
           Authorized Personnel Only • Encrypted Session
         </p>
@@ -148,5 +148,5 @@ const Login = () => {
     </div>
   );
 };
- 
+
 export default Login;

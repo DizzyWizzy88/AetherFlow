@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from '../../assets/AetherFlow_Logo.png';
 import { Input } from "@/components/ui/input";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -58,7 +57,8 @@ export default function Dashboard() {
       {/* Navigation Header */}
       <header className="w-full border-b bg-white px-8 py-4 flex items-center justify-between shadow-sm shrink-0">
         <div className="flex items-center space-x-4">
-          <img src={logo} alt="AetherFlow Logo" className="h-9 w-auto object-contain" />
+          {/* 🛠️ FIXED: Pointing directly to the absolute root public asset path */}
+          <img src="/AetherFlow_Logo.png" alt="AetherFlow Logo" className="h-9 w-auto object-contain" />
           <div className="h-6 w-px bg-slate-200" />
           <span className="text-lg font-semibold tracking-tight text-slate-900">AetherFlow Core Hub</span>
         </div>
