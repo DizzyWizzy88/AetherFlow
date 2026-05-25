@@ -34,7 +34,7 @@ const Login = () => {
       const data = await response.json();
 
       if (response.ok) {
-        localStorage.setItem('authToken', data.token);
+        localStorage.setItem('authToken', data.accessToken);
         navigate('/dashboard');
       } else {
         alert(data.message || 'Authentication Failed');
