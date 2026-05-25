@@ -20,7 +20,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://aetherflow-production.up.railway.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +78,6 @@ const Login = () => {
           width: '100%', 
           marginBottom: '32px' 
         }}>
-          {/* 🛠️ FIXED: Pointing directly to the root public asset directory path */}
           <img 
             src="/AetherFlow_Logo.png"
             alt="AetherFlow Branding" 
