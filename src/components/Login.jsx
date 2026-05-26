@@ -1,152 +1,153 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './ui/card';
+import { Input } from './ui/input';
+import { Badge } from './ui/badge';
 
-const Login = () => {
-  const [user, setUser] = useState('');
-  const [pass, setPass] = useState('');
+export default function Login() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setError('');
+    setIsLoading(false);
 
-    // 🛠️ ROBUST DEV BYPASS: Trims spaces and ignores capitalization
-    const cleanUser = user.trim().toLowerCase();
-    const cleanPass = pass.trim();
+    const cleanUsername = username.trim();
+    const cleanPassword = password.trim();
 
-    if (cleanUser === 'admin' && cleanPass === 'password123') {
-      localStorage.setItem('authToken', 'mock-development-jwt-token');
+    if (!cleanUsername || !cleanPassword) {
+      setError('Please enter both a username and password.');
+      return;
+    }
+
+    // 1. Dev Bypass Handler
+    if (cleanUsername.toLowerCase() === 'admin' && cleanPassword === 'password123') {
+      localStorage.setItem('token', 'dev-bypass-token');
+      localStorage.setItem('userRole', 'System Administrator');
+      localStorage.setItem('userName', 'Dev Admin');
       navigate('/dashboard');
       return;
     }
 
+    // 2. Live Railway Production Auth Authentication Pipeline
+    setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const response = await fetch('https://aetherflow-production.up.railway.app/api/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          username: user,
-          password: pass
+          username: cleanUsername,
+          password: cleanPassword,
         }),
       });
 
       const data = await response.json();
 
-      if (response.ok) {
-        localStorage.setItem('authToken', data.token);
-        navigate('/dashboard');
-      } else {
-        alert(data.message || 'Authentication Failed');
+      if (!response.ok) {
+        // Catches database/password mismatches from backend and displays them to the user
+        throw new Error(data.message || 'Invalid username or password.');
       }
-    } catch (error) {
-      console.error('API Connection Error:', error);
+
+      // Save live production tracking variables 
+      localStorage.setItem('token', data.token);
+      localStorage.setItem('userRole', data.role); // System Administrator or Warehouse Manager
+      localStorage.setItem('userName', data.username);
+      
+      navigate('/dashboard');
+    } catch (err) {
+      setError(err.message || 'Server connection failed. Please try again later.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div 
-      style={{ 
-        position: 'fixed', 
-        top: 0, 
-        left: 0, 
-        right: 0, 
-        bottom: 0, 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center', 
-        background: 'linear-gradient(to bottom right, #1d4ed8, #007BFF, #1e3a8a)',
-        padding: '24px'
-      }}
-    >
-      <div 
-        style={{ 
-          backgroundColor: 'rgba(255, 255, 255, 0.95)', 
-          backdropFilter: 'blur(12px)',
-          padding: '40px', 
-          borderRadius: '8px', 
-          boxShadow: '0 20px 50px rgba(0,0,0,0.3)',
-          width: '100%',
-          maxWidth: '448px',
-          borderTop: '8px solid #007BFF'
-        }}
-      >
-        <div style={{ 
-          display: 'flex', 
-          justifyContent: 'center', 
-          alignItems: 'center', 
-          width: '100%', 
-          marginBottom: '32px' 
-        }}>
-          {/* 🛠️ FIXED: Pointing directly to the root public asset directory path */}
-          <img 
-            src="/AetherFlow_Logo.png"
-            alt="AetherFlow Branding" 
-            style={{ 
-              width: '100%',      
-              maxWidth: '280px',  
-              height: 'auto', 
-              borderRadius: '4px', 
-              border: '1px solid #007BFF',
-              backgroundColor: '#000'      
-            }} 
-          />
-        </div>
-
-        <form style={{ display: 'flex', flexDirection: 'column', gap: '20px' }} onSubmit={handleLogin}>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
-              User Identification
-            </label>
-            <input 
-              type="text" 
-              placeholder="Username"
-              required
-              style={{ width: '100%', padding: '12px 16px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', outline: 'none' }}
-              value={user}
-              onChange={(e) => setUser(e.target.value)}
+    <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4">
+      <Card className="w-full max-w-md bg-slate-800 border-slate-700 text-slate-100 shadow-2xl">
+        <CardHeader className="space-y-1 flex flex-col items-center">
+          <div className="flex items-center space-x-2 mb-2">
+            <img 
+              src="/AetherFlow_Logo.png" 
+              alt="AetherFlow Logo" 
+              className="h-10 w-10 object-contain"
+              onError={(e) => { e.target.style.display = 'none'; }} 
             />
+            <span className="text-2xl font-bold tracking-wider text-cyan-400">AetherFlow</span>
           </div>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-            <label style={{ fontSize: '0.75rem', fontWeight: '700', color: '#94a3b8', marginLeft: '4px', textTransform: 'uppercase' }}>
-              Security Key
-            </label>
-            <input 
-              type="password" 
-              placeholder="••••••••"
-              required
-              style={{ width: '100%', padding: '12px 16px', backgroundColor: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '8px', outline: 'none' }}
-              value={pass}
-              onChange={(e) => setPass(e.target.value)}
-            />
-          </div>
-
-          <button 
-            type="submit" 
-            style={{ 
-              width: '100%', 
-              backgroundColor: '#007BFF', 
-              color: 'white', 
-              padding: '16px', 
-              borderRadius: '8px', 
-              fontWeight: '700', 
-              border: 'none', 
-              cursor: 'pointer',
-              marginTop: '16px',
-              boxShadow: '0 10px 15px -3px rgba(0, 123, 255, 0.3)'
-            }}
-          >
-            Authenticate Access
-          </button>
+          <CardTitle className="text-xl font-semibold text-center">Cloud Inventory Portal</CardTitle>
+          <CardDescription className="text-slate-400 text-center">
+            Enter your provisioned security credentials to log in
+          </CardDescription>
+        </CardHeader>
+        
+        <form onSubmit={handleLogin}>
+          <CardContent className="space-y-4">
+            {/* Error Notification Alert Box - Addresses Garrett's Empty Response Bug */}
+            {error && (
+              <div className="p-3 text-sm rounded bg-red-900/50 border border-red-500 text-red-200 animate-pulse">
+                {error}
+              </div>
+            )}
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300" htmlFor="username">
+                Username
+              </label>
+              <Input
+                id="username"
+                type="text"
+                placeholder="e.g., Daniel1"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                disabled={isLoading}
+                className="bg-slate-950 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-cyan-500"
+              />
+            </div>
+            
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300" htmlFor="password">
+                Password
+              </label>
+              <Input
+                id="password"
+                type="password"
+                placeholder="••••••••"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                disabled={isLoading}
+                className="bg-slate-950 border-slate-700 text-slate-100 placeholder-slate-500 focus:border-cyan-500"
+              />
+            </div>
+          </CardContent>
+          
+          <CardFooter className="flex flex-col space-y-4 pt-2">
+            <button
+              type="submit"
+              disabled={isLoading}
+              className="w-full py-2 px-4 rounded bg-cyan-600 hover:bg-cyan-500 active:bg-cyan-700 text-white font-medium transition duration-200 disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-cyan-900/30"
+            >
+              {isLoading ? 'Authenticating...' : 'Authenticate'}
+            </button>
+            
+            {/* Admin Provisioning Subtext - Addresses Garrett's Signup Page Question */}
+            <div className="text-xs text-center text-slate-500 space-y-1">
+              <p>Account registration is restricted for security.</p>
+              <p>
+                New logistics keys must be issued by a{' '}
+                <Badge variant="outline" className="text-[10px] text-cyan-500 border-cyan-500/30 px-1 py-0 bg-transparent">
+                  System Administrator
+                </Badge>
+              </p>
+            </div>
+          </CardFooter>
         </form>
-
-        <p style={{ textAlign: 'center', fontSize: '10px', color: '#94a3b8', marginTop: '32px', textTransform: 'uppercase', letterSpacing: '0.1em', fontWeight: '500' }}>
-          Authorized Personnel Only • Encrypted Session
-        </p>
-      </div>
+      </Card>
     </div>
   );
-};
-
-export default Login;
+}
