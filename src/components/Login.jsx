@@ -49,19 +49,19 @@ export default function Login() {
 
       const data = await response.json();
 
-      if (!response.ok) {
-        // Catches database/password mismatches from backend and displays them to the user
-        throw new Error(data.message || 'Invalid username or password.');
+      if (response.ok) {
+        // Consolidated key names to ensure full backend integration compatibility
+        localStorage.setItem('token', data.accessToken || data.token);
+        localStorage.setItem('userRole', data.role || 'Warehouse Manager');
+        localStorage.setItem('userName', data.username || cleanUsername);
+        navigate('/dashboard');
+      } else {
+        // Catches database mismatches and maps them to your UI error alert banner
+        setError(data.message || 'Invalid username or password.');
       }
-
-      // Save live production tracking variables 
-      localStorage.setItem('token', data.token);
-      localStorage.setItem('userRole', data.role); // System Administrator or Warehouse Manager
-      localStorage.setItem('userName', data.username);
-      
-      navigate('/dashboard');
     } catch (err) {
-      setError(err.message || 'Server connection failed. Please try again later.');
+      console.error('API Connection Error:', err);
+      setError('Server connection failed. Please try again later.');
     } finally {
       setIsLoading(false);
     }
@@ -88,7 +88,7 @@ export default function Login() {
         
         <form onSubmit={handleLogin}>
           <CardContent className="space-y-4">
-            {/* Error Notification Alert Box - Addresses Garrett's Empty Response Bug */}
+            {/* Error Notification Alert Box - Dynamically displays auth errors */}
             {error && (
               <div className="p-3 text-sm rounded bg-red-900/50 border border-red-500 text-red-200 animate-pulse">
                 {error}

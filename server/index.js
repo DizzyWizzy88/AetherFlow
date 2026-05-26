@@ -18,6 +18,9 @@ app.use(express.json())
 const authRoutes = require('./routes/auth')
 app.use('/api/auth', authRoutes)
 
+const inventoryRoutes = require('./routes/inventory')
+app.use('/api/inventory', inventoryRoutes)
+
 // quick test route to make sure server is running
 app.get('/api/health', (req, res) => {
     res.json({ status: 'server is running' })
