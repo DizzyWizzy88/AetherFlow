@@ -2,13 +2,32 @@ const express = require('express')
 const router = express.Router()
 const db = require('../db')
 
+// Helper function to map database snake_case keys into frontend camelCase components
+const transformItemPayload = (item) => ({
+    id: item.item_id,
+    sku: item.sku,
+    name: item.item_name,
+    description: item.description,
+    category: item.category,
+    quantity: item.quantity_on_hand,
+    reorderThreshold: item.reorder_threshold,
+    price: item.unit_price,
+    createdAt: item.created_at,
+    updatedAt: item.updated_at
+})
+
 // GET /api/inventory - get all inventory items
 router.get('/', async (req, res) => {
     try {
         const [rows] = await db.query(
             'SELECT * FROM inventory_items WHERE is_active = 1 ORDER BY item_name'
         )
-        return res.json({ success: true, items: rows })
+        
+        // Transform the database records to match Dashboard.jsx key expectations
+        const formattedItems = rows.map(transformItemPayload)
+        
+        // Return both raw array safety fallbacks and data wrapper objects
+        return res.json(formattedItems)
     } catch (err) {
         console.error('inventory fetch error:', err)
         return res.status(500).json({ success: false, message: 'Server error' })
@@ -28,7 +47,9 @@ router.get('/search', async (req, res) => {
             'SELECT * FROM inventory_items WHERE is_active = 1 AND (sku LIKE ? OR item_name LIKE ? OR category LIKE ?) ORDER BY item_name',
             [`%${q}%`, `%${q}%`, `%${q}%`]
         )
-        return res.json({ success: true, items: rows })
+        
+        const formattedItems = rows.map(transformItemPayload)
+        return res.json(formattedItems)
     } catch (err) {
         console.error('search error:', err)
         return res.status(500).json({ success: false, message: 'Server error' })
