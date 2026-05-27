@@ -92,12 +92,16 @@ export default function Dashboard() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 p-6">
-      {/* Top App Bar Header Layout */}
+      {/* Top App Bar Header Layout - Preserved Left Alignment with Enlarged Logo */}
       <header className="flex justify-between items-center mb-8 pb-4 border-b border-slate-800">
-        <div className="flex items-center space-x-3">
-          <img src="/AetherFlow_Logo.png" alt="Logo" className="h-8 w-8 object-contain" />
+        <div className="flex items-center space-x-4">
+          <img 
+            src="/AetherFlow_Logo.png" 
+            alt="AetherFlow Logo" 
+            className="h-16 w-16 object-contain drop-shadow-[0_0_12px_rgba(34,211,238,0.25)]" 
+          />
           <div>
-            <h1 className="text-xl font-bold text-cyan-400 tracking-wide">AetherFlow Command Panel</h1>
+            <h1 className="text-2xl font-bold text-cyan-400 tracking-wide">AetherFlow Command Panel</h1>
             <p className="text-xs text-slate-400">
               Session Active: <span className="text-slate-200 font-medium">{currentUserName}</span> ({currentUserRole})
             </p>

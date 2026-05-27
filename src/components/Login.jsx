@@ -70,15 +70,16 @@ export default function Login() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-slate-900 px-4">
       <Card className="w-full max-w-md bg-slate-800 border-slate-700 text-slate-100 shadow-2xl">
-        <CardHeader className="space-y-1 flex flex-col items-center">
-          <div className="flex items-center space-x-2 mb-2">
+        <CardHeader className="space-y-3 flex flex-col items-center">
+          {/* Centered & Enlarged Logo Wrapper Block */}
+          <div className="flex flex-col items-center space-y-3 mb-2 w-full">
             <img 
               src="/AetherFlow_Logo.png" 
               alt="AetherFlow Logo" 
-              className="h-10 w-10 object-contain"
+              className="h-20 w-20 object-contain drop-shadow-[0_0_15px_rgba(34,211,238,0.3)]"
               onError={(e) => { e.target.style.display = 'none'; }} 
             />
-            <span className="text-2xl font-bold tracking-wider text-cyan-400">AetherFlow</span>
+            <span className="text-3xl font-extrabold tracking-widest text-cyan-400">AetherFlow</span>
           </div>
           <CardTitle className="text-xl font-semibold text-center">Cloud Inventory Portal</CardTitle>
           <CardDescription className="text-slate-400 text-center">
