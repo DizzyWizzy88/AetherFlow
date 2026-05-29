@@ -16,6 +16,11 @@ router.post('/login', async (req, res) => {
         return res.status(400).json({ success: false, message: 'Username and password required' })
     }
 
+    // reject usernames with spaces in the middle
+    if (username.includes(' ')) {
+        return res.status(400).json({ success: false, message: 'Username cannot contain spaces' })
+    }
+
     try {
         // look up user in db
         const [rows] = await db.query(
