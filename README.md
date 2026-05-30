@@ -14,7 +14,7 @@ The development of AetherFlow is driven by a structured, Agile-inspired framewor
     * **Focus:** Relational SQL database schema formulation, secure API development, server-side data pools, and token-based session processing.
 * **Garrett Lassalle** | *Detail-Oriented Tester (QA & Validation)*
     * **Focus:** Core functionality assurance, automated execution script testing, test runner WAF optimizations, and viewport layout verification.
-* **Jesus Salas** | *Business Analyst (Documentation Lead)*
+* **Jesus Salas** | *Business Analyst (Documentation Lead - AWOL)*
     * **Focus:** Product backlog management, user story profiling, requirement matrix analysis, and validation compliance reports.
 * **Alex Johnston** | *Scrum Master (Project Coordinator)*
     * **Focus:** Sprint velocity tracking, block mitigation, timeline coordination, and deployment workspace infrastructure.
@@ -25,30 +25,37 @@ The development of AetherFlow is driven by a structured, Agile-inspired framewor
 
 To ensure optimal speed, horizontal scalability, and multi-platform deployment capabilities, AetherFlow utilizes the following stack:
 
-* **Frontend Environment:** React.js initialized via the Node.js/Vite build system.
-* **Design & Styling:** Tailwind CSS engine enforcing strict design tokens:
-    * *Primary Action Elements:* `Aether Blue (#007BFF)`
-    * *System Warning Indicators:* `Crimson Alert (#D50000)`
+* **Frontend Environment:** React.js initialized via the Node.js/Vite build system utilizing client-side route tracking via React Router (`useNavigate`).
+* **Design & Styling:** Tailwind CSS engine enforcing a sleek dark-mode glassmorphism aesthetic (`slate-950`) alongside strict design system tokens:
+    * *Brand Navigation/Headers:* `Aether Blue (#0D47A1)` (Midnight Dark Blue)
+    * *Success States / Dynamic Stream Trackers:* `Flow Teal (#00BFA5)` (Items > 5 units)
+    * *System Warning / Critical Threshold Indicators:* `Alert Crimson (#D50000)` (Items <= 5 units)
     * *Container Framing:* Strict `8px` rounded-corner (`rounded-lg`) layout rules.
 * **Cross-Platform Scaffolding:** Native runtime layer using `@capacitor/core` and `@capacitor/cli` for mobile device scalability.
-* **Backend Server Logic:** Node.js running an asynchronous Express API router framework.
-* **Data Persistence Layer:** Relational SQL database engine managing strict data constraints.
+* **Backend Server Logic:** Node.js running an asynchronous Express API router framework deployed via Railway.
+* **Data Persistence Layer:** Relational SQL database engine managing strict data constraints and user access tables.
 
 ---
 
-## 📊 Current Project Status
+## 📊 Project Progress & Sprint Lifecycle
 
 ### Done (Sprint 1 Milestones)
 * [x] **Secure Access Gateway:** Developed the responsive frontend login interface matching core branding guidelines.
 * [x] **Credential Input Masking:** Implemented real-time character obscuring for secure access key inputs.
-* [x] **Environment Standardization:** Resolved local asset resolution breaks by enforcing relative path structures.
+* [x] **Environment Standardization:** Resolved cross-environment compilation path breaks by enforcing rigid absolute path configurations (`@/*`) via Vite settings.
 * [x] **Mobile Runtime Initialization:** Integrated and initialized cross-platform Capacitor dependencies locally.
 
-### In Progress (Sprint 2 Focus)
-* [ ] **Primary Workspace Development:** Coding high-fidelity dashboard views and inventory management grid structures.
-* [ ] **Relational Schema Integration:** Deploying live SQL table instances and setting up secure backend database connections.
-* [ ] **Authentication Handoff:** Connecting frontend form validation handlers to active backend API verification endpoints.
-* [ ] **Automated Integration Testing:** Writing automated script testing parameters to evaluate registration limits and input validation safety.
+### Done (Sprint 2 Milestones)
+* [x] **High-Fidelity Dashboard Framework:** Coded and deployed the main tracking workspace layout, featuring dynamic status analytic cards.
+* [x] **Real-Time Holdings Matrix:** Implemented the core data table mapping out current warehouse assets and stock metrics.
+* [x] **Interactive Catalog Filtering:** Developed the frontend search query handling input text to instantly filter inventory rows via active keystrokes.
+* [x] **Critical Low-Stock Logic:** Implemented dynamic styling logic that color-flags rows instantly if inventory values drop at or below 5 units.
+* [x] **Defensive Local Bypasses:** Configured automated frontend sanitization (`.trim()`) to catch data formatting anomalies safely during pipeline exchanges.
+
+### In Progress (Sprint 3 / Release Preparation Focus)
+* [ ] **CORS Middleware & Environment Tuning:** Finalizing API gateway permissions for secure, end-to-end server messaging.
+* [ ] **Automated Rigor Scripts:** Conducting validation checks on SKU data tables to ensure production compliance.
+* [ ] **Product Demonstration Readiness:** Preparing the system presentation media and Scrum retrospective slide decks for final release evaluation.
 
 ---
 

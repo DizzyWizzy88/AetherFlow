@@ -6,7 +6,10 @@ dotenv.config()
 
 const app = express()
 
-// allow requests from our react frontend
+// open cors so vercel frontend can talk to railway backend
+app.use(cors())
+
+// also keep the specific origin config for local dev
 app.use(cors({
     origin: process.env.FRONTEND_URL || 'http://localhost:5173',
     credentials: true
